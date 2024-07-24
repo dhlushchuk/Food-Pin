@@ -1,0 +1,108 @@
+
+/* Class = "UILabel"; text = "Phone"; ObjectID = "1s2-1E-Xot"; */
+"1s2-1E-Xot.text" = "Телефон";
+
+/* Class = "UINavigationItem"; title = "FoodPin"; ObjectID = "2u7-HI-eK7"; */
+"2u7-HI-eK7.title" = "FoodPin";
+
+/* Class = "UITextField"; placeholder = "Fill in the restaurant phone"; ObjectID = "3cd-nM-jgt"; */
+"3cd-nM-jgt.placeholder" = "Введите номер телефона";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "5Lj-N6-htd"; */
+"5Lj-N6-htd.text" = "Адрес";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "7QH-Ps-WJR"; */
+"7QH-Ps-WJR.text" = "Описание";
+
+/* Class = "UILabel"; text = "PHONE"; ObjectID = "AyG-Zh-uSd"; */
+"AyG-Zh-uSd.text" = "ТЕЛЕФОН";
+
+/* Class = "UILabel"; text = "NAME"; ObjectID = "GOC-ae-9JI"; */
+"GOC-ae-9JI.text" = "НАЗВАНИЕ";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "I0f-h0-tJs"; */
+"I0f-h0-tJs.title" = "Избранные";
+
+/* Class = "UITextField"; placeholder = "Fill in the restaurant name"; ObjectID = "KxC-lo-QIQ"; */
+"KxC-lo-QIQ.placeholder" = "Введите название";
+
+/* Class = "UIButton"; configuration.title = "Good"; ObjectID = "Ljz-Ty-Xal"; */
+"Ljz-Ty-Xal.configuration.title" = "Хорошо";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ljz-Ty-Xal"; */
+"Ljz-Ty-Xal.normalTitle" = "Button";
+
+/* Class = "UITextView"; text = "A great restaurant to try out."; ObjectID = "Mnk-SM-Ilu"; */
+"Mnk-SM-Ilu.text" = "Отличный ресторан, который стоит посетить";
+
+/* Class = "UITextField"; placeholder = "Fill in the restaurant type"; ObjectID = "Sni-9G-RwF"; */
+"Sni-9G-RwF.placeholder" = "Введите тип ресторана";
+
+/* Class = "UINavigationItem"; title = "New Restaurant"; ObjectID = "T11-bZ-Lqz"; */
+"T11-bZ-Lqz.title" = "Добавить Ресторан";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "WCr-Sy-5DE"; */
+"WCr-Sy-5DE.text" = "Тип";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "Y7k-b5-tXK"; */
+"Y7k-b5-tXK.title" = "Item";
+
+/* Class = "UILabel"; text = "DESCRIPTION"; ObjectID = "aUy-MM-RYS"; */
+"aUy-MM-RYS.text" = "ОПИСАНИЕ";
+
+/* Class = "UIButton"; configuration.title = "Awesome"; ObjectID = "aqY-aJ-3hj"; */
+"aqY-aJ-3hj.configuration.title" = "Замечательно";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "aqY-aJ-3hj"; */
+"aqY-aJ-3hj.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Phone Number"; ObjectID = "eGY-N8-zdK"; */
+"eGY-N8-zdK.text" = "Номер Телефона";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "fLk-kD-GKF"; */
+"fLk-kD-GKF.text" = "Название";
+
+/* Class = "UIButton"; configuration.title = "Terrible"; ObjectID = "fz0-Le-cBu"; */
+"fz0-Le-cBu.configuration.title" = "Ужасно";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fz0-Le-cBu"; */
+"fz0-Le-cBu.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Rate it"; ObjectID = "jyd-mL-zxQ"; */
+"jyd-mL-zxQ.configuration.title" = "Оценить";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jyd-mL-zxQ"; */
+"jyd-mL-zxQ.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Fill in the restaurant address"; ObjectID = "l6B-W5-WIn"; */
+"l6B-W5-WIn.placeholder" = "Введите адрес";
+
+/* Class = "UILabel"; text = "Full Address"; ObjectID = "lvS-bQ-7GU"; */
+"lvS-bQ-7GU.text" = "Адрес";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "mXF-3e-ytE"; */
+"mXF-3e-ytE.text" = "Название";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "oFk-cF-J4u"; */
+"oFk-cF-J4u.text" = "Адрес";
+
+/* Class = "UIButton"; configuration.title = "Bad"; ObjectID = "sBN-Ic-Ka4"; */
+"sBN-Ic-Ka4.configuration.title" = "Плохо";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "sBN-Ic-Ka4"; */
+"sBN-Ic-Ka4.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "ADDRESS"; ObjectID = "u0x-BE-78F"; */
+"u0x-BE-78F.text" = "АДРЕС";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "wen-0m-48u"; */
+"wen-0m-48u.text" = "Тип";
+
+/* Class = "UILabel"; text = "TYPE"; ObjectID = "xSr-9v-OpD"; */
+"xSr-9v-OpD.text" = "ТИП";
+
+/* Class = "UIButton"; configuration.title = "Okay"; ObjectID = "zQj-kH-9Jd"; */
+"zQj-kH-9Jd.configuration.title" = "Нормально";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "zQj-kH-9Jd"; */
+"zQj-kH-9Jd.normalTitle" = "Button";

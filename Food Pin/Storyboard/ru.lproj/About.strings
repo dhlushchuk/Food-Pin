@@ -1,0 +1,9 @@
+
+/* Class = "UITabBarItem"; title = "About"; ObjectID = "EDE-Sa-528"; */
+"EDE-Sa-528.title" = "О нас";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "fgY-ep-dKl"; */
+"fgY-ep-dKl.title" = "О нас";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "qXU-T6-8BN"; */
+"qXU-T6-8BN.text" = "Title";

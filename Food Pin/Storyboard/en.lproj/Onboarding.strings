@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; configuration.title = "Skip"; ObjectID = "Geq-Sb-8m7"; */
+"Geq-Sb-8m7.configuration.title" = "Skip";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Geq-Sb-8m7"; */
+"Geq-Sb-8m7.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "HEADING"; ObjectID = "MHG-Ig-SIw"; */
+"MHG-Ig-SIw.text" = "HEADING";
+
+/* Class = "UILabel"; text = "Subheading"; ObjectID = "cos-rI-Cks"; */
+"cos-rI-Cks.text" = "Subheading";
+
+/* Class = "UIButton"; configuration.title = "NEXT"; ObjectID = "xn3-el-H4U"; */
+"xn3-el-H4U.configuration.title" = "NEXT";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "xn3-el-H4U"; */
+"xn3-el-H4U.normalTitle" = "Button";

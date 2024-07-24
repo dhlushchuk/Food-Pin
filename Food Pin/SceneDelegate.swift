@@ -8,6 +8,18 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    enum QuickAction: String {
+        
+        case OpenFavorites, OpenDiscover, NewRestaurant
+        
+        init?(fullIdentifier: String) {
+            guard let shortcutIdentifier = fullIdentifier.components(separatedBy: ".").last else {
+                return nil
+            }
+            self.init(rawValue: shortcutIdentifier)
+        }
+    }
 
     var window: UIWindow?
 
@@ -46,7 +58,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(handleQuickAction(shortcutItem: shortcutItem))
+    }
+    
+    private func handleQuickAction(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        let shortcutType = shortcutItem.type
+        guard let shortcutIdentifier = QuickAction(fullIdentifier: shortcutType) else { return false }
+        guard let tabBarController = window?.rootViewController as? UITabBarController else { return false }
+        switch shortcutIdentifier {
+        case .OpenFavorites:
+            tabBarController.selectedIndex = 0
+        case .OpenDiscover:
+            tabBarController.selectedIndex = 1
+        case .NewRestaurant:
+            if let navController = tabBarController.viewControllers?.first {
+                if let restaurantTableViewController = navController.children.first {
+                    restaurantTableViewController.performSegue(
+                        withIdentifier: "addRestaurant",
+                        sender: restaurantTableViewController
+                    )
+                }
+            } else {
+                return false
+            }
+        }
+        return true
+    }
 
 }
 
