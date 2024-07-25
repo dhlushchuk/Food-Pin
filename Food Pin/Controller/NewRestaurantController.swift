@@ -14,6 +14,7 @@ class NewRestaurantController: UITableViewController {
     
     var dataStore: RestaurantDataStore?
     
+    // instantiate the model container
     let container = try? ModelContainer(for: Restaurant.self)
     
     @IBOutlet weak var photoImageView: UIImageView! {
@@ -61,6 +62,7 @@ class NewRestaurantController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // hide keyboard
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
@@ -139,19 +141,23 @@ class NewRestaurantController: UITableViewController {
             image: photoImageView.image
         )
         container?.mainContext.insert(restaurant)
-//        saveRecordToCloud(restaurant: restaurant)
+        saveRecordToCloud(restaurant: restaurant)
         dismiss(animated: true) {
             self.dataStore?.fetchRestaurantData(searchText: "")
         }
     }
     
     func saveRecordToCloud(restaurant: Restaurant) {
+        
+        // prepare the record to save
         let record = CKRecord(recordType: "Restaurant")
         record.setValue(restaurant.name, forKey: "name")
         record.setValue(restaurant.type, forKey: "type")
         record.setValue(restaurant.location, forKey: "location")
         record.setValue(restaurant.phone, forKey: "phone")
         record.setValue(restaurant.summary, forKey: "description")
+        
+        // resize the image
         var imageFileURL: URL?
         if let originalImage = restaurant.image {
             let width = originalImage.size.width
@@ -160,17 +166,22 @@ class NewRestaurantController: UITableViewController {
             imageFileURL = URL(filePath: imageFilePath)
             if let imageData = originalImage.pngData(),
                let scaledImage = UIImage(data: imageData, scale: scalingFactor) {
+                // write the image to local file for temporary use
                 try? scaledImage.jpegData(compressionQuality: 0.8)?.write(to: imageFileURL!)
+                // creating image asset for upload
                 let imageAsset = CKAsset(fileURL: imageFileURL!)
                 record.setValue(imageAsset, forKey: "image")
             }
         }
+        // get the public iCloud database
         let publicDatabase = CKContainer.default().publicCloudDatabase
+        // save the record to iCloud
         publicDatabase.save(record) { record, error in
             guard error == nil else {
                 print(error!.localizedDescription)
                 return
             }
+            // remove temp file
             if let imageFileURL {
                 try? FileManager.default.removeItem(at: imageFileURL)
             }

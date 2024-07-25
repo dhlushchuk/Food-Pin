@@ -26,6 +26,7 @@ class DiscoverTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = dataSource
         tableView.cellLayoutMarginsFollowReadableWidth = true
+        // fetch records from iCloud
         fetchRecordsFromCloud()
         setupSpinner()
         refreshControl = UIRefreshControl()
@@ -41,12 +42,16 @@ class DiscoverTableViewController: UITableViewController {
             cell.locationLabel.text = restaurant.object(forKey: "location") as? String
             cell.typeLabel.text = restaurant.object(forKey: "type") as? String
             cell.descriptionLabel.text = restaurant.object(forKey: "description") as? String
+            // set the default image
             cell.thumbnailImageView.image = UIImage(systemName: "photo")?.withTintColor(.black)
+            // check if the image is stored in cache
             if let imageFileURL = self.imageCache.object(forKey: restaurant.recordID) {
+                // fetch image from cache
                 if let imageData = try? Data(contentsOf: imageFileURL as URL) {
                     cell.thumbnailImageView.image = UIImage(data: imageData)
                 }
             } else {
+                // fetch image from iCloud in background
                 let publicDatabase = CKContainer.default().publicCloudDatabase
                 let fetchRecordsImageOperation = CKFetchRecordsOperation(recordIDs: [restaurant.recordID])
                 fetchRecordsImageOperation.desiredKeys = ["image"]
@@ -57,11 +62,13 @@ class DiscoverTableViewController: UITableViewController {
                         if let image = restaurantRecord.object(forKey: "image"),
                            let imageAsset = image as? CKAsset {
                             if let imageData = try? Data(contentsOf: imageAsset.fileURL!) {
+                                // replace the placeholder image with the restaurant image
                                 DispatchQueue.main.async {
                                     cell.thumbnailImageView.image = UIImage(data: imageData)
                                     cell.setNeedsLayout()
                                 }
                             }
+                            // add the image url to cache
                             self.imageCache.setObject(imageAsset.fileURL! as NSURL, forKey: restaurant.recordID)
                         }
                     } catch {
@@ -75,13 +82,14 @@ class DiscoverTableViewController: UITableViewController {
         return dataSource
     }
     
-//    operational API
+    // fetch data using operational API
     @objc func fetchRecordsFromCloud() {
         let cloudContainer = CKContainer.default()
         let publicDatabase = cloudContainer.publicCloudDatabase
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Restaurant", predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        // create the query operation with the query
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.desiredKeys = ["name", "location", "type", "description"]
         queryOperation.queuePriority = .veryHigh
@@ -109,18 +117,18 @@ class DiscoverTableViewController: UITableViewController {
         publicDatabase.add(queryOperation)
     }
     
-//    convenience API
-//    func fetchRecordsFromCloud() async throws {
-//        let cloudContainer = CKContainer.default()
-//        let publicDatabase = cloudContainer.publicCloudDatabase
-//        let predicate = NSPredicate(value: true)
-//        let query = CKQuery(recordType: "Restaurant", predicate: predicate)
-//        let results = try await publicDatabase.records(matching: query)
-//        for record in results.matchResults {
-//            restaurants.append(try record.1.get())
-//        }
-//        updateSnapshot()
-//    }
+    // fetch data using convenience API
+    func fetchRecordsFromCloud_Convenience() async throws {
+        let cloudContainer = CKContainer.default()
+        let publicDatabase = cloudContainer.publicCloudDatabase
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Restaurant", predicate: predicate)
+        let results = try await publicDatabase.records(matching: query)
+        for record in results.matchResults {
+            restaurants.append(try record.1.get())
+        }
+        updateSnapshot()
+    }
     
     func updateSnapshot(animatingChange: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, CKRecord>()

@@ -38,6 +38,7 @@ class WalkthroughPageViewController: UIPageViewController {
         super.viewDidLoad()
         dataSource = self
         delegate = self
+        // create the first walkthrough screen
         if let startingViewController = contentViewController(at: 0) {
             setViewControllers([startingViewController], direction: .forward, animated: true)
         }

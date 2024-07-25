@@ -17,7 +17,9 @@ class RestaurantDetailMapCell: UITableViewCell {
     }
     
     func configure(location: String) {
+        // get location
         let geocoder = CLGeocoder()
+        
         geocoder.geocodeAddressString(location) { [weak self] placemarks, error in
             guard let self else { return }
             guard error == nil else {
@@ -25,11 +27,17 @@ class RestaurantDetailMapCell: UITableViewCell {
                 return
             }
             if let placemarks {
+                // get the first placemark
                 let placemark = placemarks[0]
+                
+                // add annotation
                 let annotation = MKPointAnnotation()
                 if let location = placemark.location {
+                    // display the annotation
                     annotation.coordinate = location.coordinate
                     self.mapView.addAnnotation(annotation)
+                    
+                    // set zoom level
                     let region = MKCoordinateRegion(
                         center: annotation.coordinate,
                         latitudinalMeters: 250,

@@ -77,6 +77,7 @@ class WalkthroughViewController: UIViewController {
         }
     }
     
+    // add quick actions
     func createQuickActions() {
         if let bundleIdentifier = Bundle.main.bundleIdentifier {
             let showFavoritesShortcutItem = UIApplicationShortcutItem(

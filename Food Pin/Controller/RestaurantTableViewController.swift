@@ -22,6 +22,7 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
         }
     }
     
+    // instantiate the model container
     let container = try? ModelContainer(for: Restaurant.self)
     private lazy var dataSource = configureDataSource()
     
@@ -37,17 +38,26 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = ""
         tableView.cellLayoutMarginsFollowReadableWidth = true
         tableView.dataSource = dataSource
+        
+        // empty view
         tableView.backgroundView = emptyRestaurantView
-        fetchRestaurantData(searchText: "")
-        navigationItem.backButtonTitle = ""
+        
+        // add a search bar
         searchController = UISearchController()
         navigationItem.searchController = searchController
+        
+        // get data from database
+        fetchRestaurantData(searchText: "")
+        
+        // setup user notifications
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert, .sound, .badge]
         ) { granted, error in
             if granted {
+                // configure the notifications
                 self.prepareNotification()
             }
         }
@@ -72,6 +82,7 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
         guard let restaurant = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
         guard !searchController.isActive else { return nil }
         
+        // delete action
         let deleteAction = UIContextualAction(
             style: .destructive,
             title: String(localized: "Delete")
@@ -83,6 +94,7 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
             completionHandler(true)
         }
         
+        // share action
         let shareAction = UIContextualAction(
             style: .normal,
             title: String(localized: "Share")
@@ -107,12 +119,15 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
         shareAction.backgroundColor = .systemOrange
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
+        // both actions as swipe action
         let swapActionsConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
         return swapActionsConfiguration
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !searchController.isActive else { return nil }
+        
+        // mark as favorite action
         let favoriteAction = UIContextualAction(style: .normal, title: nil) { action, sourceView, completion in
             let cell = tableView.cellForRow(at: indexPath) as! RestaurantTableViewCell
             cell.favoriteImageView.isHidden.toggle()
@@ -246,8 +261,12 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
     
     func prepareNotification() {
         if restaurants.count <= 0 { return }
+        
+        // pick a random restaurant
         let randomNum = Int.random(in: 0..<restaurants.count)
         let suggestedRestaurant = restaurants[randomNum]
+        
+        // create the user notification
         let content = UNMutableNotificationContent()
         content.title = "Restaurant Recommendation"
         content.subtitle = "Try new food today"
@@ -273,8 +292,9 @@ class RestaurantTableViewController: UITableViewController, RestaurantDataStore 
             trigger: trigger
         )
         let center = UNUserNotificationCenter.current()
-        center.add(request)
         center.setNotificationCategories([category])
+        // add the notification
+        center.add(request)
     }
     
 }

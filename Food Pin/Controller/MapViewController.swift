@@ -30,6 +30,7 @@ class MapViewController: UIViewController {
         
     }
 
+    // convert address to coordinate and annotate it on map
     private func setupAnnotation() {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(restaurant.location) { [weak self] placemarks, error in

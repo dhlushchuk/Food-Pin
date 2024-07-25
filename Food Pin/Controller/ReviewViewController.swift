@@ -19,15 +19,18 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImageView.image = restaurant.image
+        // applying the blur effect
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         backgroundImageView.addSubview(blurEffectView)
+        
         setupAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // animate the close button
         UIView.animate(withDuration: 1) {
             self.closeButton.transform = .identity
         }
